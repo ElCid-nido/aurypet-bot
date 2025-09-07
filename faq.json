@@ -1,91 +1,178 @@
 [
   {
     "id": "orari",
-    "q": ["orari", "orari apertura", "aperto oggi", "fasce orarie", "quando aprite", "quando siete aperti", "chiusura pranzo", "pausa pranzo"],
+    "q": [
+      "orari",
+      "orari apertura",
+      "aperto oggi",
+      "fasce orarie",
+      "quando aprite",
+      "quando siete aperti",
+      "chiusura pranzo",
+      "pausa pranzo"
+    ],
     "a": "Siamo aperti 09:30–18:30 (lun–ven). Pausa pranzo 11:30–14:00. Lunedì mattina chiuso. Sabato 09:00–12:30 e 14:00–18:00.",
     "category": "info"
   },
   {
     "id": "indirizzo",
-    "q": ["indirizzo", "dove siete", "posizione", "come arrivare", "mappa", "parcheggio"],
+    "q": [
+      "indirizzo",
+      "dove siete",
+      "posizione",
+      "come arrivare",
+      "mappa",
+      "parcheggio"
+    ],
     "a": "Ci trovi in Viale Portone 1, 6500 Bellinzona. Posteggio convenzionato a fianco del negozio.",
     "category": "info"
   },
   {
     "id": "contatti",
-    "q": ["contatti", "telefono", "cellulare", "email", "scrivervi", "whatsapp"],
+    "q": [
+      "contatti",
+      "telefono",
+      "cellulare",
+      "email",
+      "scrivervi",
+      "whatsapp"
+    ],
     "a": "Telefono: 091 825 07 07 · Mobile: 079 866 28 19 · Email: aurypet@bluewin.ch.",
     "category": "info"
   },
   {
     "id": "chi_siamo",
-    "q": ["chi siete", "chi è il titolare", "esperienza", "consulenza"],
+    "q": [
+      "chi siete",
+      "chi è il titolare",
+      "esperienza",
+      "consulenza"
+    ],
     "a": "Siamo un negozio specializzato fondato e gestito da Stefano, con oltre 30 anni di esperienza nel benessere degli animali.",
     "category": "info"
   },
   {
     "id": "barf",
-    "q": ["barf", "dieta barf", "carne cruda", "cibo crudo", "barf pronta"],
+    "q": [
+      "barf",
+      "dieta barf",
+      "carne cruda",
+      "cibo crudo",
+      "barf pronta"
+    ],
     "a": "Disponibile dieta BARF pronta e congelata, selezionata per qualità e praticità.",
     "category": "prodotti"
   },
   {
     "id": "reti_gatti",
-    "q": ["rete gatti", "reti protezione gatti", "balcone gatti", "rete per gatti", "installazione reti"],
+    "q": [
+      "rete gatti",
+      "reti protezione gatti",
+      "balcone gatti",
+      "rete per gatti",
+      "installazione reti"
+    ],
     "a": "Forniamo e installiamo reti di protezione per gatti per balconi, terrazze e finestre.",
     "category": "servizi"
   },
   {
     "id": "acquari",
-    "q": ["acquario", "manutenzione acquari", "installazione acquario", "acquari servizio"],
+    "q": [
+      "acquario",
+      "manutenzione acquari",
+      "installazione acquario",
+      "acquari servizio"
+    ],
     "a": "Offriamo consulenza, installazione e manutenzione acquari, anche a domicilio.",
     "category": "servizi"
   },
   {
     "id": "consegne",
-    "q": ["consegna", "delivery", "spedizione", "domicilio", "consegnate in svizzera"],
+    "q": [
+      "consegna",
+      "delivery",
+      "spedizione",
+      "domicilio",
+      "consegnate in svizzera"
+    ],
     "a": "Consegniamo in tutta la Svizzera. Chiamaci o scrivici per modalità e tempi.",
     "category": "servizi"
   },
   {
     "id": "marche",
-    "q": ["marchi", "brand", "prodotti", "qualità"],
+    "q": [
+      "marchi",
+      "brand",
+      "prodotti",
+      "qualità"
+    ],
     "a": "Selezioniamo solo articoli di qualità per cani, gatti, pesci, rettili e piccoli animali.",
     "category": "prodotti"
   },
   {
     "id": "pagamenti",
-    "q": ["pagamenti", "carte", "contanti", "twint"],
+    "q": [
+      "pagamenti",
+      "carte",
+      "contanti",
+      "twint"
+    ],
     "a": "Accettiamo i metodi di pagamento più comuni in negozio. Per dettagli, contattaci.",
     "category": "info"
   },
   {
     "id": "residui_festivi",
-    "q": ["festivi", "vacanze", "ferragosto", "orari speciali"],
+    "q": [
+      "festivi",
+      "vacanze",
+      "ferragosto",
+      "orari speciali"
+    ],
     "a": "Gli orari possono variare nei giorni festivi: verifica in anticipo chiamandoci.",
     "category": "info"
   },
   {
     "id": "parcheggio",
-    "q": ["parcheggio", "posteggio", "dove parcheggiare"],
+    "q": [
+      "parcheggio",
+      "posteggio",
+      "dove parcheggiare"
+    ],
     "a": "È disponibile un posteggio convenzionato accanto al negozio.",
     "category": "info"
   },
   {
     "id": "resipericani",
-    "q": ["cani", "prodotti per cani", "crocchette cane", "guinzagli", "giochi cane"],
+    "q": [
+      "cani",
+      "prodotti per cani",
+      "crocchette cane",
+      "guinzagli",
+      "giochi cane"
+    ],
     "a": "Ampia scelta per cani: alimenti, snack, guinzagli, cucce e giochi. Chiedi una consulenza in negozio.",
     "category": "prodotti"
   },
   {
     "id": "resiperigatti",
-    "q": ["gatti", "prodotti per gatti", "lettiere", "cibo gatto", "tiragraffi"],
+    "q": [
+      "gatti",
+      "prodotti per gatti",
+      "lettiere",
+      "cibo gatto",
+      "tiragraffi"
+    ],
     "a": "Tutto per gatti: alimenti, lettiere, tiragraffi, giochi e reti di protezione.",
     "category": "prodotti"
   },
   {
     "id": "ordine",
-    "q": ["ordinare", "prenotare", "prodotto non disponibile", "riordino"],
+    "q": [
+      "ordinare",
+      "prenotare",
+      "prodotto non disponibile",
+      "riordino"
+    ],
     "a": "Se non trovi un prodotto, possiamo ordinarlo. Contattaci con marca e formato.",
     "category": "servizi"
   }

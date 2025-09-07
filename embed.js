@@ -2,11 +2,10 @@
   const d = document;
   const ds = d.currentScript.dataset;
   const origin = ds.origin || (new URL(d.currentScript.src)).origin;
-  const path = ds.path || "/"; // where chat.html & assets are hosted
+  const path = ds.path || "/";
   const pos = ds.position || "bottom-right";
   const color = ds.primary || "#0B5FFF";
 
-  // Button
   const btn = d.createElement("button");
   btn.type = "button";
   btn.setAttribute("aria-label", "Apri chat di assistenza");
@@ -20,7 +19,6 @@
   btn.textContent = "💬";
   d.body.appendChild(btn);
 
-  // Frame
   const wrap = d.createElement("div");
   Object.assign(wrap.style, {
     position:"fixed", zIndex:"2147483646", width:"min(380px,96vw)", height:"min(560px,80vh)",

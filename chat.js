@@ -1,4 +1,5 @@
-import Fuse from './fuse.min.js'; // or use window.Fuse if not ESM
+// Chat logic
+const Fuse = window.Fuse;
 
 const $ = (s, el=document) => el.querySelector(s);
 const chat = $('#chat');
@@ -15,7 +16,7 @@ const RATE_LIMIT_MS = 60000;
     fetch('./business.json', {cache:'no-store'}).then(r=>r.json())
   ]);
   KB = faq; BIZ = biz;
-  renderBot(`Ciao! Posso aiutarti con orari, indirizzo, contatti, reti di protezione per gatti, manutenzione acquari e dieta BARF. Prova: “rete per gatti balcone”.`);
+  renderBot('Ciao! Posso aiutarti con orari, indirizzo, contatti, reti per gatti, manutenzione acquari e dieta BARF. Prova: “rete per gatti balcone”.');
 })();
 
 function renderMsg(text, who='bot'){
@@ -29,9 +30,10 @@ function renderMsg(text, who='bot'){
   chat.scrollTop = chat.scrollHeight;
 }
 
+function renderBot(text){ renderMsg(text, 'bot'); }
+
 function renderAnswer(item){
-  renderMsg(item.a, 'bot');
-  // Contextual actions
+  renderBot(item.a);
   const row = document.createElement('div');
   row.className = 'action-row';
 
@@ -68,19 +70,15 @@ function search(q){
   const fuse = new Fuse(KB, {
     keys: ['q', 'a', 'category'],
     includeScore: true,
-    threshold: 0.44, // forgiving for typos / paraphrases
+    threshold: 0.44,
     distance: 60,
     minMatchCharLength: 2
   });
-  // 1) direct intent by id token
   const norm = q.toLowerCase().trim();
   const direct = KB.find(x => x.id === norm);
   if (direct) return [direct];
 
-  // 2) fuzzy search
   const res = fuse.search(norm).sort((a,b)=>a.score-b.score).slice(0,3).map(r=>r.item);
-
-  // 3) lightweight paraphrase fallback: split words & re-run
   if (res.length===0 && norm.includes(' ')) {
     const top = fuse.search(norm.split(' ').slice(0,3).join(' ')).slice(0,2).map(r=>r.item);
     return top;
@@ -94,13 +92,12 @@ function handleQuery(q){
 
   const hits = search(q);
   if(hits.length){
-    // De-duplicate near-equivalents by id
     const seen = new Set();
     hits.forEach(item => {
       if(!seen.has(item.id)) { renderAnswer(item); seen.add(item.id); }
     });
   } else {
-    renderMsg("Non ho trovato una risposta precisa. Vuoi inviare un messaggio? Compila il modulo qui sotto.");
+    renderBot('Non ho trovato una risposta precisa. Vuoi inviare un messaggio? Compila il modulo qui sotto.');
   }
 }
 
@@ -119,7 +116,6 @@ document.querySelectorAll('[data-intent]').forEach(btn=>{
   });
 });
 
-// Handoff via EmailJS (no keys here; set via EmailJS dashboard)
 leadForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const now = Date.now();
@@ -127,7 +123,7 @@ leadForm.addEventListener('submit', async (e)=>{
     return alert('Per favore attendi un minuto prima di un nuovo invio.');
   }
   const data = Object.fromEntries(new FormData(leadForm).entries());
-  if (data.website) { return; } // honeypot
+  if (data.website) { return; }
   if (!data.consent) { return alert('Serve il consenso per inviare.'); }
 
   const payload = {
@@ -143,9 +139,9 @@ leadForm.addEventListener('submit', async (e)=>{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
-        service_id: "service_qvrbcr8",
-        template_id: "template_s2cnccm",
-        user_id: "6gIhjxivvS7THJVuB",
+        service_id: "YOUR_SERVICE_ID",
+        template_id: "YOUR_TEMPLATE_ID",
+        user_id: "YOUR_PUBLIC_KEY",
         template_params: payload
       })
     });
