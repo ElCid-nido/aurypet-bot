@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assistenza Aurypet</title>
+  <link rel="stylesheet" href="./style.css" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src https://fonts.gstatic.com;
+    img-src 'self' data:;
+    script-src 'self';
+    connect-src 'self' https://api.emailjs.com;
+    frame-ancestors *;
+    base-uri 'none';
+    form-action 'self' https://api.emailjs.com;">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <div class="brand">
+        <span class="logo">🐾</span>
+        <div>
+          <div class="title">Aurypet — Assistenza</div>
+          <div class="subtitle">Risposte rapide & richieste</div>
+        </div>
+      </div>
+      <div class="quick">
+        <button data-intent="orari">Orari</button>
+        <button data-intent="indirizzo">Indirizzo</button>
+        <button data-intent="contatti">Contatti</button>
+      </div>
+    </header>
+
+    <main id="chat" aria-live="polite" aria-label="Conversazione"></main>
+
+    <form id="inputForm" autocomplete="off" novalidate>
+      <input id="q" name="q" type="text" maxlength="200" placeholder="Scrivi una domanda (es. 'reti per gatti')" />
+      <button type="submit" class="send">Invia</button>
+      <input type="text" name="website" tabindex="-1" aria-hidden="true" class="honeypot" />
+    </form>
+
+    <section class="handoff">
+      <h2>Non hai trovato risposta?</h2>
+      <form id="leadForm" autocomplete="off" novalidate>
+        <input name="name" type="text" placeholder="Nome" required />
+        <input name="email" type="email" placeholder="Email" required />
+        <textarea name="message" placeholder="Messaggio" rows="3" required></textarea>
+        <label class="consent">
+          <input type="checkbox" name="consent" required />
+          Acconsento al trattamento dei dati per essere ricontattato.
+        </label>
+        <input type="text" name="website" tabindex="-1" aria-hidden="true" class="honeypot" />
+        <button type="submit">Invia richiesta</button>
+        <div class="hint">Non salviamo la cronologia della chat. Riceverai risposta via email.</div>
+      </form>
+    </section>
+  </div>
+
+  <script src="./fuse.min.js"></script>
+  <script src="./chat.js" type="module"></script>
+</body>
+</html>
