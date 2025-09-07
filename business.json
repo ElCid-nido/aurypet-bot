@@ -1,1 +1,13 @@
-{"business_name":"Aurypet Quality Shop","locale":"it-CH","address":"Viale Portone 1, 6500 Bellinzona, Svizzera","map_url":"https://maps.google.com/?q=Viale%20Portone%201%206500%20Bellinzona","phone":"+41 91 825 07 07","mobile":"+41 79 866 28 19","email":"aurypet@bluewin.ch","hours_notes":"Chiusi per pranzo 11:30–14:00; lunedì mattina chiuso; sabato 09:00–12:30 e 14:00–18:00","website":"https://aurypet.ch/","whatsapp":"","privacy_contact":"aurypet@bluewin.ch"}
+{
+  "business_name": "Aurypet Quality Shop",
+  "locale": "it-CH",
+  "address": "Viale Portone 1, 6500 Bellinzona, Svizzera",
+  "map_url": "https://maps.google.com/?q=Viale%20Portone%201%206500%20Bellinzona",
+  "phone": "+41 91 825 07 07",
+  "mobile": "+41 79 866 28 19",
+  "email": "aurypet@bluewin.ch",
+  "hours_notes": "Chiusi per pranzo 11:30–14:00; lunedì mattina chiuso; sabato 09:00–12:30 e 14:00–18:00",
+  "website": "https://aurypet.ch/",
+  "whatsapp": "",
+  "privacy_contact": "aurypet@bluewin.ch"
+}
