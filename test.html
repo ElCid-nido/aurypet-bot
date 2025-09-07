@@ -17,13 +17,27 @@
     <p>Apri/chiudi il widget col bottone in basso a destra.</p>
   </div>
 
-  <!-- Embed from GitHub Pages -->
+  <script>
+    // sanity log to confirm JS runs on this page
+    console.log("test.html: JS is executing");
+  </script>
+
+  <!-- Load the widget from THIS repo (same folder) -->
   <script
     src="./embed.js"
+    data-origin="https://elcid-nido.github.io"
     data-path="/aurypet-bot/"
     data-position="bottom-right"
     data-primary="#0B5FFF"
     defer
   ></script>
+
+  <script>
+    // If the button does not appear, print diagnostics
+    window.addEventListener("load", () => {
+      const s = document.currentScript?.previousElementSibling;
+      console.log("embed script present:", !!s, s?.src || "(inline)");
+    });
+  </script>
 </body>
 </html>
