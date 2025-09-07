@@ -1,65 +1,159 @@
-<!doctype html>
-<html lang="it">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Assistenza Aurypet</title>
-  <link rel="stylesheet" href="./style.css" />
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'none';
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src https://fonts.gstatic.com;
-    img-src 'self' data:;
-    script-src 'self';
-    connect-src 'self' https://api.emailjs.com;
-    frame-ancestors *;
-    base-uri 'none';
-    form-action 'self' https://api.emailjs.com;">
-</head>
-<body>
-  <div id="app">
-    <header class="header">
-      <div class="brand">
-        <span class="logo">🐾</span>
-        <div>
-          <div class="title">Aurypet — Assistenza</div>
-          <div class="subtitle">Risposte rapide & richieste</div>
-        </div>
-      </div>
-      <div class="quick">
-        <button data-intent="orari">Orari</button>
-        <button data-intent="indirizzo">Indirizzo</button>
-        <button data-intent="contatti">Contatti</button>
-      </div>
-    </header>
+import Fuse from './fuse.min.js'; // or use window.Fuse if not ESM
 
-    <main id="chat" aria-live="polite" aria-label="Conversazione"></main>
+const $ = (s, el=document) => el.querySelector(s);
+const chat = $('#chat');
+const inputForm = $('#inputForm');
+const qInput = $('#q');
+const leadForm = $('#leadForm');
 
-    <form id="inputForm" autocomplete="off" novalidate>
-      <input id="q" name="q" type="text" maxlength="200" placeholder="Scrivi una domanda (es. 'reti per gatti')" />
-      <button type="submit" class="send">Invia</button>
-      <input type="text" name="website" tabindex="-1" aria-hidden="true" class="honeypot" />
-    </form>
+let KB = [], BIZ = null, lastSubmitAt = 0;
+const RATE_LIMIT_MS = 60000;
 
-    <section class="handoff">
-      <h2>Non hai trovato risposta?</h2>
-      <form id="leadForm" autocomplete="off" novalidate>
-        <input name="name" type="text" placeholder="Nome" required />
-        <input name="email" type="email" placeholder="Email" required />
-        <textarea name="message" placeholder="Messaggio" rows="3" required></textarea>
-        <label class="consent">
-          <input type="checkbox" name="consent" required />
-          Acconsento al trattamento dei dati per essere ricontattato.
-        </label>
-        <input type="text" name="website" tabindex="-1" aria-hidden="true" class="honeypot" />
-        <button type="submit">Invia richiesta</button>
-        <div class="hint">Non salviamo la cronologia della chat. Riceverai risposta via email.</div>
-      </form>
-    </section>
-  </div>
+(async function bootstrap(){
+  const [faq, biz] = await Promise.all([
+    fetch('./faq.json', {cache:'no-store'}).then(r=>r.json()),
+    fetch('./business.json', {cache:'no-store'}).then(r=>r.json())
+  ]);
+  KB = faq; BIZ = biz;
+  renderBot(`Ciao! Posso aiutarti con orari, indirizzo, contatti, reti di protezione per gatti, manutenzione acquari e dieta BARF. Prova: “rete per gatti balcone”.`);
+})();
 
-  <script src="./fuse.min.js"></script>
-  <script src="./chat.js" type="module"></script>
-</body>
-</html>
-// Chat logic file (see assistant full code above)
+function renderMsg(text, who='bot'){
+  const wrap = document.createElement('div');
+  wrap.className = `msg ${who==='user'?'user':'bot'}`;
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  b.textContent = text;
+  wrap.appendChild(b);
+  chat.appendChild(wrap);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function renderAnswer(item){
+  renderMsg(item.a, 'bot');
+  // Contextual actions
+  const row = document.createElement('div');
+  row.className = 'action-row';
+
+  if(item.id==='indirizzo'){
+    row.appendChild(actionBtn('Apri in Maps', ()=> window.open(BIZ.map_url,'_blank')));
+    row.appendChild(actionBtn('Copia indirizzo', ()=> copyToClipboard(BIZ.address)));
+  }
+  if(item.id==='contatti'){
+    row.appendChild(actionBtn('Chiama', ()=> window.open(`tel:${BIZ.phone.replace(/\s+/g,'')}`)));
+    row.appendChild(actionBtn('Scrivi email', ()=> window.open(`mailto:${BIZ.email}`)));
+  }
+  if(item.id==='orari'){
+    row.appendChild(actionBtn('Copia orari', ()=> copyToClipboard(item.a)));
+  }
+  if(row.children.length){
+    chat.lastElementChild.appendChild(row);
+  }
+}
+
+function actionBtn(label, onClick){
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'action';
+  btn.textContent = label;
+  btn.addEventListener('click', onClick);
+  return btn;
+}
+
+function copyToClipboard(text){
+  navigator.clipboard?.writeText(text);
+}
+
+function search(q){
+  const fuse = new Fuse(KB, {
+    keys: ['q', 'a', 'category'],
+    includeScore: true,
+    threshold: 0.44, // forgiving for typos / paraphrases
+    distance: 60,
+    minMatchCharLength: 2
+  });
+  // 1) direct intent by id token
+  const norm = q.toLowerCase().trim();
+  const direct = KB.find(x => x.id === norm);
+  if (direct) return [direct];
+
+  // 2) fuzzy search
+  const res = fuse.search(norm).sort((a,b)=>a.score-b.score).slice(0,3).map(r=>r.item);
+
+  // 3) lightweight paraphrase fallback: split words & re-run
+  if (res.length===0 && norm.includes(' ')) {
+    const top = fuse.search(norm.split(' ').slice(0,3).join(' ')).slice(0,2).map(r=>r.item);
+    return top;
+  }
+  return res;
+}
+
+function handleQuery(q){
+  if(!q || !q.trim()) return;
+  renderMsg(q.trim(), 'user');
+
+  const hits = search(q);
+  if(hits.length){
+    // De-duplicate near-equivalents by id
+    const seen = new Set();
+    hits.forEach(item => {
+      if(!seen.has(item.id)) { renderAnswer(item); seen.add(item.id); }
+    });
+  } else {
+    renderMsg("Non ho trovato una risposta precisa. Vuoi inviare un messaggio? Compila il modulo qui sotto.");
+  }
+}
+
+inputForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const val = qInput.value.slice(0,200);
+  handleQuery(val);
+  qInput.value = '';
+});
+
+document.querySelectorAll('[data-intent]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const id = btn.getAttribute('data-intent');
+    const item = KB.find(x=>x.id===id);
+    if(item) renderAnswer(item);
+  });
+});
+
+// Handoff via EmailJS (no keys here; set via EmailJS dashboard)
+leadForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const now = Date.now();
+  if (now - lastSubmitAt < RATE_LIMIT_MS) {
+    return alert('Per favore attendi un minuto prima di un nuovo invio.');
+  }
+  const data = Object.fromEntries(new FormData(leadForm).entries());
+  if (data.website) { return; } // honeypot
+  if (!data.consent) { return alert('Serve il consenso per inviare.'); }
+
+  const payload = {
+    business_name: BIZ.business_name,
+    user_name: String(data.name||'').slice(0,80),
+    user_email: String(data.email||'').slice(0,120),
+    user_message: String(data.message||'').slice(0,1000),
+    page_url: document.referrer || location.href
+  };
+
+  try{
+    const r = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        service_id: "YOUR_SERVICE_ID",
+        template_id: "YOUR_TEMPLATE_ID",
+        user_id: "YOUR_PUBLIC_KEY",
+        template_params: payload
+      })
+    });
+    if(!r.ok) throw new Error('EmailJS error');
+    lastSubmitAt = now;
+    alert('Grazie! Ti contatteremo al più presto.');
+    leadForm.reset();
+  }catch(err){
+    alert('Invio non riuscito. Riprovare più tardi o usare i contatti diretti.');
+  }
+});
