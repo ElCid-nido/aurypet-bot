@@ -139,9 +139,9 @@ leadForm.addEventListener('submit', async (e)=>{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
-        service_id: "YOUR_SERVICE_ID",
-        template_id: "YOUR_TEMPLATE_ID",
-        user_id: "YOUR_PUBLIC_KEY",
+        service_id: "service_qvrbcr8",
+        template_id: "template_s2cnccm",
+        user_id: "6gIhjxivvS7THJVuB",
         template_params: payload
       })
     });
