@@ -2,14 +2,11 @@
   {
     "id": "orari",
     "q": [
-      "orari",
-      "orari apertura",
-      "aperto oggi",
-      "fasce orarie",
-      "quando aprite",
-      "quando siete aperti",
-      "chiusura pranzo",
-      "pausa pranzo"
+      "orari", "orari apertura", "orari di apertura", "aperti", "aperto", "aperto oggi",
+      "quando aprite", "quando siete aperti", "a che ora aprite", "a che ora chiudete",
+      "chiusura", "orario continuato", "fasce orarie", "pausa pranzo", "chiusura pranzo",
+      "oggi siete aperti", "orari sabato", "orari weekend", "orari domenica", "orari feriali",
+      "orari negozio", "apertura", "chiusura orario"
     ],
     "a": "Siamo aperti 09:30–18:30 (lun–ven). Pausa pranzo 11:30–14:00. Lunedì mattina chiuso. Sabato 09:00–12:30 e 14:00–18:00.",
     "category": "info"
@@ -17,12 +14,8 @@
   {
     "id": "indirizzo",
     "q": [
-      "indirizzo",
-      "dove siete",
-      "posizione",
-      "come arrivare",
-      "mappa",
-      "parcheggio"
+      "indirizzo", "dove siete", "posizione", "localizzazione", "come arrivare", "mappa",
+      "google maps", "via", "indirizzo completo", "ubicazione", "sede", "dove vi trovate"
     ],
     "a": "Ci trovi in Viale Portone 1, 6500 Bellinzona. Posteggio convenzionato a fianco del negozio.",
     "category": "info"
@@ -30,35 +23,142 @@
   {
     "id": "contatti",
     "q": [
-      "contatti",
-      "telefono",
-      "cellulare",
-      "email",
-      "scrivervi",
-      "whatsapp"
+      "contatti", "telefono", "numero", "cellulare", "mobile", "chiamarvi",
+      "email", "mail", "scrivervi", "contatto", "come contattarvi", "whatsapp"
     ],
     "a": "Telefono: 091 825 07 07 · Mobile: 079 866 28 19 · Email: aurypet@bluewin.ch.",
     "category": "info"
   },
   {
+    "id": "festivi",
+    "q": [
+      "festivi", "orari festivi", "orari speciali", "vacanze", "chiuso per ferie",
+      "ferragosto", "natale orari", "capodanno orari", "pasqua orari"
+    ],
+    "a": "Gli orari possono variare nei giorni festivi. Ti consigliamo di chiamarci prima di passare.",
+    "category": "info"
+  },
+  {
+    "id": "pagamenti",
+    "q": [
+      "pagamenti", "metodi di pagamento", "carte", "carta di credito", "contanti", "twint",
+      "si può pagare con carta", "pagare con carta", "accettate twint", "pos", "bancomat"
+    ],
+    "a": "Accettiamo i metodi di pagamento più comuni in negozio. Per dettagli, contattaci.",
+    "category": "info"
+  },
+  {
+    "id": "parcheggio",
+    "q": [
+      "parcheggio", "posteggio", "dove parcheggiare", "parcheggio clienti", "posteggio vicino",
+      "parcheggio negozio"
+    ],
+    "a": "È disponibile un posteggio convenzionato accanto al negozio.",
+    "category": "info"
+  },
+  {
     "id": "chi_siamo",
     "q": [
-      "chi siete",
-      "chi è il titolare",
-      "esperienza",
-      "consulenza"
+      "chi siete", "chi è il titolare", "titolare", "esperienza", "consulenza",
+      "chi lavora", "chi c'è in negozio", "assistenza clienti", "supporto"
     ],
     "a": "Siamo un negozio specializzato fondato e gestito da Stefano, con oltre 30 anni di esperienza nel benessere degli animali.",
     "category": "info"
   },
   {
+    "id": "consegne",
+    "q": [
+      "consegna", "consegne", "delivery", "spedizione", "spedizioni", "a domicilio",
+      "domicilio", "recapito", "portate a casa", "consegna in svizzera", "spedite in svizzera"
+    ],
+    "a": "Consegniamo in tutta la Svizzera. Contattaci per modalità, tempi e costi.",
+    "category": "servizi"
+  },
+  {
+    "id": "ordine",
+    "q": [
+      "ordinare", "prenotare", "riordino", "prodotto non disponibile", "ordine speciale",
+      "prenotazione prodotto", "su ordinazione", "se non avete", "se manca un prodotto"
+    ],
+    "a": "Se non trovi un prodotto, lo ordiniamo per te. Scrivici marca/formato e ti diamo tempistiche.",
+    "category": "servizi"
+  },
+  {
+    "id": "consulenza",
+    "q": [
+      "consulenza", "consigli", "aiuto scelta", "supporto alimentazione", "quale prodotto",
+      "assistenza tecnica", "domande prodotti", "chiedere consiglio"
+    ],
+    "a": "Offriamo consulenza personalizzata in negozio e telefonica su prodotti e gestione degli animali.",
+    "category": "servizi"
+  },
+
+  // --------- PRODOTTI GENERALI ---------
+
+  {
+    "id": "prodotti_cani",
+    "q": [
+      "cani", "prodotti per cani", "cane prodotti", "cibo cane", "crocchette cane",
+      "umido cane", "snack cane", "biscotti cane", "guinzagli", "collari", "pettorine",
+      "cucce cane", "giochi cane", "accessori cane"
+    ],
+    "a": "Per cani: alimenti secchi/umidi, snack, guinzagli, pettorine, cucce, giochi e accessori.",
+    "category": "prodotti"
+  },
+  {
+    "id": "prodotti_gatti",
+    "q": [
+      "gatti", "prodotti per gatti", "gatto prodotti", "cibo gatto", "crocchette gatto",
+      "umido gatto", "snack gatto", "lettiere", "sabbia gatto", "tiragraffi", "giochi gatto",
+      "accessori gatto"
+    ],
+    "a": "Per gatti: alimenti, snack, lettiere, tiragraffi, giochi e accessori.",
+    "category": "prodotti"
+  },
+  {
+    "id": "prodotti_pesci",
+    "q": [
+      "pesci", "prodotti per pesci", "mangime pesci", "filtro acquario", "decorazioni acquario",
+      "piante acquario", "acquari", "accessori acquario"
+    ],
+    "a": "Per l’acquario: mangimi, filtri, materiali tecnici, decorazioni, piante e accessori.",
+    "category": "prodotti"
+  },
+  {
+    "id": "prodotti_rettili",
+    "q": [
+      "rettili", "prodotti per rettili", "terrari", "lampade rettili", "substrati rettili",
+      "accessori rettili"
+    ],
+    "a": "Per rettili: alimenti selezionati, substrati, illuminazione e accessori per terrari.",
+    "category": "prodotti"
+  },
+  {
+    "id": "prodotti_uccelli",
+    "q": [
+      "uccelli", "volatili", "canarini", "pappagalli", "mangime uccelli", "accessori uccelli",
+      "gabbie", "posatoi"
+    ],
+    "a": "Per uccelli: mangimi, accessori e gabbie selezionati.",
+    "category": "prodotti"
+  },
+  {
+    "id": "prodotti_piccoli_animali",
+    "q": [
+      "piccoli animali", "conigli", "criceti", "cavie", "ricci", "fieno", "lettiera piccoli animali",
+      "casette", "tunnel", "giochi piccoli animali"
+    ],
+    "a": "Per piccoli animali: alimenti, fieno, lettiere, casette e giochi.",
+    "category": "prodotti"
+  },
+
+  // --------- SERVIZI SPECIALI ---------
+
+  {
     "id": "barf",
     "q": [
-      "barf",
-      "dieta barf",
-      "carne cruda",
-      "cibo crudo",
-      "barf pronta"
+      "barf", "dieta barf", "carne cruda", "cibo crudo", "barf pronta", "barf congelata",
+      "alimentazione naturale", "raw feeding"
     ],
     "a": "Disponibile dieta BARF pronta e congelata, selezionata per qualità e praticità.",
     "category": "prodotti"
@@ -66,11 +166,8 @@
   {
     "id": "reti_gatti",
     "q": [
-      "rete gatti",
-      "reti protezione gatti",
-      "balcone gatti",
-      "rete per gatti",
-      "installazione reti"
+      "rete gatti", "reti protezione gatti", "rete per gatti", "balcone gatti",
+      "rete balcone", "protezione terrazza", "installazione reti per gatti"
     ],
     "a": "Forniamo e installiamo reti di protezione per gatti per balconi, terrazze e finestre.",
     "category": "servizi"
@@ -78,102 +175,84 @@
   {
     "id": "acquari",
     "q": [
-      "acquario",
-      "manutenzione acquari",
-      "installazione acquario",
-      "acquari servizio"
+      "acquario", "acquari", "manutenzione acquari", "installazione acquario",
+      "allestimento acquario", "assistenza acquario", "acquario a domicilio", "cura acquario"
     ],
     "a": "Offriamo consulenza, installazione e manutenzione acquari, anche a domicilio.",
     "category": "servizi"
   },
   {
-    "id": "consegne",
+    "id": "test_acqua",
     "q": [
-      "consegna",
-      "delivery",
-      "spedizione",
-      "domicilio",
-      "consegnate in svizzera"
+      "test acqua", "analisi acqua", "valori acqua", "ph acquario", "nitriti nitrati",
+      "controllo acqua acquario"
     ],
-    "a": "Consegniamo in tutta la Svizzera. Chiamaci o scrivici per modalità e tempi.",
+    "a": "Eseguiamo e consigliamo test dei principali valori dell’acqua dell’acquario e i prodotti correlati.",
+    "category": "servizi"
+  },
+
+  // --------- RICHIESTE FREQUENTI PRATICHE ---------
+
+  {
+    "id": "prezzi_preventivo",
+    "q": [
+      "prezzi", "quanto costa", "costo", "preventivo", "listino", "prezzo prodotto",
+      "quanto viene", "info prezzi"
+    ],
+    "a": "Per prezzi e preventivi contattaci indicando articolo/marca/formato: ti rispondiamo rapidamente.",
+    "category": "vendite"
+  },
+  {
+    "id": "disponibilita",
+    "q": [
+      "disponibilità", "avete in negozio", "ce l'avete", "prodotto disponibile",
+      "arrivi", "stock", "magazzino", "a scaffale"
+    ],
+    "a": "La disponibilità varia: scrivici il prodotto che cerchi e ti confermiamo subito.",
+    "category": "vendite"
+  },
+  {
+    "id": "resocambio",
+    "q": [
+      "reso", "cambio", "cambiare prodotto", "restituzione", "restituire", "diritto di recesso",
+      "posso restituire", "posso cambiare"
+    ],
+    "a": "Per resi o cambi contattaci: ti indichiamo condizioni e tempi in base al prodotto.",
+    "category": "vendite"
+  },
+  {
+    "id": "ordini_telefonici",
+    "q": [
+      "ordinare per telefono", "ordine telefonico", "prenotare per telefono", "telefonicamente",
+      "posso chiamare per ordinare"
+    ],
+    "a": "Sì, accettiamo ordini e prenotazioni anche per telefono o email.",
     "category": "servizi"
   },
   {
-    "id": "marche",
+    "id": "lingue",
     "q": [
-      "marchi",
-      "brand",
-      "prodotti",
-      "qualità"
+      "lingue", "parlate inglese", "parlate tedesco", "lingua", "in che lingua",
+      "assistenza in inglese", "assistenza in tedesco"
     ],
-    "a": "Selezioniamo solo articoli di qualità per cani, gatti, pesci, rettili e piccoli animali.",
-    "category": "prodotti"
-  },
-  {
-    "id": "pagamenti",
-    "q": [
-      "pagamenti",
-      "carte",
-      "contanti",
-      "twint"
-    ],
-    "a": "Accettiamo i metodi di pagamento più comuni in negozio. Per dettagli, contattaci.",
+    "a": "Possiamo assisterti anche telefonicamente o via email. Scrivici e troviamo il modo più comodo.",
     "category": "info"
   },
   {
-    "id": "residui_festivi",
+    "id": "orari_contatto",
     "q": [
-      "festivi",
-      "vacanze",
-      "ferragosto",
-      "orari speciali"
+      "quando rispondete", "tempi di risposta", "orari per chiamare", "quando chiamare",
+      "quando vi trovo", "assistenza orari"
     ],
-    "a": "Gli orari possono variare nei giorni festivi: verifica in anticipo chiamandoci.",
+    "a": "Rispondiamo durante gli orari di negozio. Se scrivi fuori orario, ti ricontattiamo appena possibile.",
     "category": "info"
   },
   {
-    "id": "parcheggio",
+    "id": "newsletter_social",
     "q": [
-      "parcheggio",
-      "posteggio",
-      "dove parcheggiare"
+      "novità", "aggiornamenti", "promozioni", "offerte", "social", "facebook", "instagram"
     ],
-    "a": "È disponibile un posteggio convenzionato accanto al negozio.",
+    "a": "Per novità e promozioni, contattaci: ti indichiamo i nostri canali aggiornati.",
     "category": "info"
-  },
-  {
-    "id": "resipericani",
-    "q": [
-      "cani",
-      "prodotti per cani",
-      "crocchette cane",
-      "guinzagli",
-      "giochi cane"
-    ],
-    "a": "Ampia scelta per cani: alimenti, snack, guinzagli, cucce e giochi. Chiedi una consulenza in negozio.",
-    "category": "prodotti"
-  },
-  {
-    "id": "resiperigatti",
-    "q": [
-      "gatti",
-      "prodotti per gatti",
-      "lettiere",
-      "cibo gatto",
-      "tiragraffi"
-    ],
-    "a": "Tutto per gatti: alimenti, lettiere, tiragraffi, giochi e reti di protezione.",
-    "category": "prodotti"
-  },
-  {
-    "id": "ordine",
-    "q": [
-      "ordinare",
-      "prenotare",
-      "prodotto non disponibile",
-      "riordino"
-    ],
-    "a": "Se non trovi un prodotto, possiamo ordinarlo. Contattaci con marca e formato.",
-    "category": "servizi"
   }
 ]
